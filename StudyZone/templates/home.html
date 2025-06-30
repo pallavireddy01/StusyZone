@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210912/pngtree-aesthetic-background-pink-pastel-image_866344.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+        .logo {
+            width: 200px;
+            height: auto;
+            
+            
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: black;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: black;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmsSk2TdYZgarJaaY67CIpRwB3U9HmFWRp4AbqZ9Qqo7LpJ6EFTEBUg-cLb1NiDvTtCCI&usqp=CAU" alt="GPCET Logo" class="logo">
+    <h1>Welcome to Knowledge Repository</h1>
+    <h3>(GPCET Smart Study)</h3>
+    <a href="{{ url_for('student_portal') }}" class="btn">I'm a Student</a>
+    <a href="{{ url_for('admin_login') }}" class="btn">I'm an Admin</a>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Papers & Study Materials</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210912/pngtree-aesthetic-background-pink-pastel-image_866344.jpg'); /* Add your image path here */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        select {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Study Materials & Question Papers</h1>
+    <form method="get" action="/">
+        <label for="regulation">Filter by Regulation:</label>
+        <select name="regulation" id="regulation" onchange="this.form.submit()">
+            <option value="">All</option>
+            {% for reg in regulations %}
+                <option value="{{ reg }}" {% if reg == selected_regulation %}selected{% endif %}>{{ reg }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file['subject'] }} - {{ file['year'] }} (Sem {{ file['semester'] }}, Regulation: {{ file['regulation'] }})
+                <a href="{{ url_for('download_file', filename=file['filename']) }}">Download</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

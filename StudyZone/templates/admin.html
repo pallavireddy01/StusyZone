@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Upload</title>
+    <script>
+        function toggleFields() {
+            var type = document.getElementById("type").value;
+            document.getElementById("unitGroup").style.display = type === "Material" ? "block" : "none";
+            document.getElementById("examGroup").style.display = type === "QP" ? "block" : "none";
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210912/pngtree-aesthetic-background-pink-pastel-image_866344.jpg');
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #examGroup, #unitGroup {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Admin Upload</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>alert("{{ messages[0] }}");</script>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" enctype="multipart/form-data">
+        <label for="file">Upload File:</label>
+        <input type="file" name="file" id="file" required><br>
+
+        <label for="branch">Branch:</label>
+        <select name="branch" id="branch" required>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+        </select><br>
+
+        <label for="year">Year:</label>
+        <select name="year" id="year" required>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+        </select><br>
+
+        <label for="semester">Semester:</label>
+        <select name="semester" id="semester" required>
+            <option value="1st Semester">1st Semester</option>
+            <option value="2nd Semester">2nd Semester</option>
+        </select><br>
+
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" id="subject" placeholder="Subject" required><br>
+
+        <div id="unitGroup">
+            <label for="unit">Unit (for Study Material):</label>
+            <input type="text" name="unit" id="unit" placeholder="Unit">
+        </div>
+
+        <label for="regulation">Regulation:</label>
+        <input type="text" name="regulation" id="regulation" required><br>
+
+        <label for="type">Type:</label>
+        <select name="type" id="type" onchange="toggleFields()" required>
+            <option value="Material">Study Material</option>
+            <option value="QP">Question Paper</option>
+        </select><br>
+
+        <div id="examGroup">
+            <label for="exam_type">Exam Type (for Question Paper):</label>
+            <input type="text" name="exam_type" id="exam_type" placeholder="Exam Type (Regular/Supply)">
+            
+            <label for="month">Exam Month:</label>
+            <input type="text" name="month" id="month" placeholder="Exam Month">
+        </div>
+
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

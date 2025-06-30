@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Resources</title>
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210912/pngtree-aesthetic-background-pink-pastel-image_866344.jpg');
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .back-link a {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h2>Available Resources</h2>
+    <ul>
+        {% for file in files %}
+            <li>
+                {{ file.subject }} ({{ file.semester }} Semester, {{ file.year }}, {{ file.branch }}) - 
+                <a href="{{ url_for('download', filename=file.filename) }}">Download</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="back-link">
+        <a href="{{ url_for('student_portal') }}">Back to Student Portal</a>
+    </div>
+</body>
+</html>
